@@ -8,9 +8,25 @@
             <param-value>100</param-value>
         </init-param>
     </servlet>
+    <servlet>
+        <servlet-name>ListaProfessori</servlet-name>
+        <servlet-class>servlet.ListaProfessori</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ListaCorsi</servlet-name>
+        <servlet-class>servlet.ListaCorsi</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>HelloWorld</servlet-name>
         <url-pattern>/HelloWorld</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ListaProfessori</servlet-name>
+        <url-pattern>/ListaProfessori</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ListaCorsi</servlet-name>
+        <url-pattern>/ListaCorsi</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
