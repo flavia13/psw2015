@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package servlet;
 
+import entity.Professore;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
@@ -13,9 +13,11 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.Resource;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -27,10 +29,9 @@ import javax.sql.DataSource;
  * @author sflesca
  */
 public class ListaProfGestita extends HttpServlet {
+
     @Resource(name = "esempioDB2015DS")
     private DataSource esempioDB2015DS;
-    
-    
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -43,38 +44,35 @@ public class ListaProfGestita extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        Connection con =null;
+        Connection con = null;
+        List professori = new LinkedList();
+        request.setAttribute("professori", professori);
         try {
-            response.setContentType("text/html;charset=UTF-8");
             con = esempioDB2015DS.getConnection();
-            try (PrintWriter out = response.getWriter()) {
-                /* TODO output your page here. You may use following sample code. */
-                out.println("<!DOCTYPE html>");
-                out.println("<html>");
-                out.println("<head>");
-                out.println("<title>Servlet ListaProfessori</title>");
-                out.println("</head>");
-                out.println("<body>");
-                out.println("<h1>ListaProfessori</h1>");
-                Statement st = con.createStatement();
-                ResultSet rs = st.executeQuery("select * from Professore");
-                while(rs.next()){
-                    out.println("<p><a href=\"ListaCorsi?PID="+rs.getInt(1)+"\" >Prof:"+rs.getInt(1)+"</a> Cognome:"+rs.getString(2)+" Nome:"
-                            +rs.getString(3)+" Settore:"+rs.getString(4));
-                }
-                out.println("</body>");
-                out.println("</html>");
+            Statement st = con.createStatement();
+            ResultSet rs = st.executeQuery("select * from Professore");
+            while (rs.next()) {
+                professori.add(new Professore(rs.getInt(1), rs.getString(2), rs.getString(3)));
             }
         } catch (SQLException ex) {
             Logger.getLogger(ListaProfessori.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
-            if(con!=null)
+            if (con != null) {
                 try {
                     con.close();
-            } catch (SQLException ex) {
-                Logger.getLogger(ListaProfessori.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (SQLException ex) {
+                    Logger.getLogger(ListaProfessori.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
+            gotoPage("/jsp/prova.jsp", request, response);
         }
+    }
+
+    private void gotoPage(String address,HttpServletRequest request,
+            HttpServletResponse response) throws ServletException,IOException{
+	RequestDispatcher dispatcher
+                = getServletContext().getRequestDispatcher(address);
+        dispatcher.forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
