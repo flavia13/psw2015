@@ -16,6 +16,10 @@
         <servlet-name>ListaCorsi</servlet-name>
         <servlet-class>servlet.ListaCorsi</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ListaProfGestita</servlet-name>
+        <servlet-class>servlet.ListaProfGestita</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>HelloWorld</servlet-name>
         <url-pattern>/HelloWorld</url-pattern>
@@ -27,6 +31,10 @@
     <servlet-mapping>
         <servlet-name>ListaCorsi</servlet-name>
         <url-pattern>/ListaCorsi</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ListaProfGestita</servlet-name>
+        <url-pattern>/ListaProfGestita</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
