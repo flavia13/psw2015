@@ -5,7 +5,7 @@
  */
 package servlet;
 
-import entity.Professore;
+import entity.ProfessoreOld;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
@@ -52,7 +52,7 @@ public class ListaProfGestita extends HttpServlet {
             Statement st = con.createStatement();
             ResultSet rs = st.executeQuery("select * from Professore");
             while (rs.next()) {
-                professori.add(new Professore(rs.getInt(1), rs.getString(2), rs.getString(3)));
+                professori.add(new ProfessoreOld(rs.getInt(1), rs.getString(2), rs.getString(3)));
             }
         } catch (SQLException ex) {
             Logger.getLogger(ListaProfessori.class.getName()).log(Level.SEVERE, null, ex);
