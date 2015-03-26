@@ -18,9 +18,9 @@
 java.util.List professori = (java.util.List) request.getAttribute("professori");
 java.util.Iterator it = professori.iterator();
 while (it.hasNext()) {
-    entity.ProfessoreOld p = (entity.ProfessoreOld) it.next();
+    entity.Professore p = (entity.Professore) it.next();
 %>
-<LI>Prof: <%= p.getId() %>, <%= p.getCognome() %>, <%= p.getNome() %>
+<LI>Prof: <%= p.getIdProfessore() %>, <%= p.getCognome() %>, <%= p.getNome() %>
 <% } %>
 </UL>
 
