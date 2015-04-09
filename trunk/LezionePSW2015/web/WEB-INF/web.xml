@@ -24,6 +24,10 @@
         <servlet-name>ListaProfJPA</servlet-name>
         <servlet-class>servlet.ListaProfJPA</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ListaProfEJB</servlet-name>
+        <servlet-class>servlet.ListaProfEJB</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>HelloWorld</servlet-name>
         <url-pattern>/HelloWorld</url-pattern>
@@ -43,6 +47,10 @@
     <servlet-mapping>
         <servlet-name>ListaProfJPA</servlet-name>
         <url-pattern>/ListaProfJPA</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ListaProfEJB</servlet-name>
+        <url-pattern>/ListaProfEJB</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
