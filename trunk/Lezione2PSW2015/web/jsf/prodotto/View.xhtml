@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewProdottoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewProdottoLabel_categoria}"/>
+                    <h:outputText value="#{prodottoController.selected.categoria}" title="#{bundle.ViewProdottoTitle_categoria}"/>
+                    <h:outputText value="#{bundle.ViewProdottoLabel_prezzo}"/>
+                    <h:outputText value="#{prodottoController.selected.prezzo}" title="#{bundle.ViewProdottoTitle_prezzo}"/>
+                    <h:outputText value="#{bundle.ViewProdottoLabel_version}"/>
+                    <h:outputText value="#{prodottoController.selected.version}" title="#{bundle.ViewProdottoTitle_version}"/>
+                    <h:outputText value="#{bundle.ViewProdottoLabel_nome}"/>
+                    <h:outputText value="#{prodottoController.selected.nome}" title="#{bundle.ViewProdottoTitle_nome}"/>
+                    <h:outputText value="#{bundle.ViewProdottoLabel_id}"/>
+                    <h:outputText value="#{prodottoController.selected.id}" title="#{bundle.ViewProdottoTitle_id}"/>
+                    <h:outputText value="#{bundle.ViewProdottoLabel_qtaAvailable}"/>
+                    <h:outputText value="#{prodottoController.selected.qtaAvailable}" title="#{bundle.ViewProdottoTitle_qtaAvailable}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{prodottoController.destroyAndView}" value="#{bundle.ViewProdottoDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewProdottoEditLink}"/>
+                <br />
+                <h:commandLink action="#{prodottoController.prepareCreate}" value="#{bundle.ViewProdottoCreateLink}" />
+                <br />
+                <h:commandLink action="#{prodottoController.prepareList}" value="#{bundle.ViewProdottoShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewProdottoIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>
