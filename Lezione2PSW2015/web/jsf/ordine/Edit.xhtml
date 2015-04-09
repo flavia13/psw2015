@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditOrdineTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditOrdineLabel_cliente}" for="cliente" />
+                    <h:selectOneMenu id="cliente" value="#{ordineController.selected.cliente}" title="#{bundle.EditOrdineTitle_cliente}" required="true" requiredMessage="#{bundle.EditOrdineRequiredMessage_cliente}">
+                        <f:selectItems value="#{clienteController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditOrdineLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{ordineController.selected.id}" title="#{bundle.EditOrdineTitle_id}" />
+                </h:panelGrid>
+                <h:commandLink action="#{ordineController.update}" value="#{bundle.EditOrdineSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditOrdineViewLink}"/>
+                <br />
+                <h:commandLink action="#{ordineController.prepareList}" value="#{bundle.EditOrdineShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditOrdineIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>
